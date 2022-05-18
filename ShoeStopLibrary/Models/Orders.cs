@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ShoeStopLibrary.Models
@@ -8,7 +9,9 @@ namespace ShoeStopLibrary.Models
     {
         public int id { get; set; }
         public int productId { get; set; }
+        
         public int userId { get; set; }
+        
         public int addressId { get; set; }
         public int quantity { get; set; }
         public string status { get; set; }

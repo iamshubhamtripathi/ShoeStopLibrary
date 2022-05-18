@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ShoeStopLibrary.Migrations
 {
-    public partial class Migrations : Migration
+    public partial class MigrationsNew : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

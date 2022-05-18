@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ShoeStopLibrary.DataProvider;
 using ShoeStopLibrary.Models;
 
-namespace CRUD.Controllers
+namespace CRUD.ControllersAPI
 {
     [Route("api/[controller]")]
     [ApiController]

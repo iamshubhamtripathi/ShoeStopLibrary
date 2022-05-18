@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ShoeStopLibrary.DataProvider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,18 @@ namespace ShoeStopAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                builder =>
+                {
+                    builder.WithOrigins("https://localhost:44370", "http://localhost:4200")
+                    .AllowAnyHeader()
+                     .AllowAnyMethod();
+                });
+            });
+            services.AddDbContext<DataAccess>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,7 +48,13 @@ namespace ShoeStopAPI
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(builder =>
+            {
+                builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            });
             app.UseHttpsRedirection();
 
             app.UseRouting();

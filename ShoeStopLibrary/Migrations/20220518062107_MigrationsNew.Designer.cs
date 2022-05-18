@@ -10,8 +10,8 @@ using ShoeStopLibrary.DataProvider;
 namespace ShoeStopLibrary.Migrations
 {
     [DbContext(typeof(DataAccess))]
-    [Migration("20220516085224_Migrations")]
-    partial class Migrations
+    [Migration("20220518062107_MigrationsNew")]
+    partial class MigrationsNew
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

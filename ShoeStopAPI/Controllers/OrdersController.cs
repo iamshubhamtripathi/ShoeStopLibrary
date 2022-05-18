@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ShoeStopLibrary.DataProvider;
 using ShoeStopLibrary.Models;
 
-namespace CRUD.Controllers
+namespace CRUD.ControllersAPI
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -26,6 +26,25 @@ namespace CRUD.Controllers
         public async Task<ActionResult<IEnumerable<Orders>>> GetOrders()
         {
             return await _context.Orders.ToListAsync();
+        }
+        [HttpGet("GetName/{id}")]
+        public async Task<ActionResult<string[]>> GetName(int id, string name)
+        {
+            var orderObj = await _context.Orders.FindAsync(id);
+            int addressId = orderObj.addressId;
+            int prodId = orderObj.productId;
+            int userId = orderObj.userId;
+
+            var addressObj = await _context.Address.FindAsync(addressId);
+            string addressName = addressObj.address;
+            var prodObj = await _context.Products.FindAsync(prodId);
+            string prodName = prodObj.productName;
+            var userObj = await _context.Users.FindAsync(userId);
+           string userName = userObj.name;
+
+            string[] fullName = { addressName, prodName, userName };
+
+            return fullName;
         }
 
         // GET: api/Orders/5
